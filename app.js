@@ -37,8 +37,8 @@ var uiController = (function () {
     var z = y.split("").reverse().join("");
     if (z[0] === ",") z = z.substr(1, z.length - 1);
 
-    if (type === "inc") z = "+ " + z;
-    else z = "- " + z;
+    if (type === "inc" && z !== "0") z = "+ " + z;
+    else if (z !== "0") z = "- " + z;
     return z;
   };
 
@@ -175,7 +175,7 @@ var financeController = (function () {
 
   Expense.prototype.calcPercentage = function (totalIncome) {
     if (totalIncome > 0)
-      this.percentage = Math.round((this.value / totalIncome) * 100);
+      this.percentage = Math.round((this.value / totalIncome) * 100) + "%";
     else this.percentage = 0;
   };
 
